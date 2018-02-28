@@ -32,6 +32,8 @@
 (require 'ivy)
 
 (require 'libmpdel)
+(require 'mpdel-core)
+(require 'mpdel-song)
 
 
 ;;; Helper functions
@@ -52,20 +54,6 @@
   "Return a function applying FUNCTION after unwrapping its argument."
   (lambda (pair) (funcall function (ivy-mpdel--unwrap pair))))
 
-(defun ivy-mpdel--stored-playlist-add-entity (entity)
-  "Select a stored playlist and add ENTITY to it."
-  (libmpdel-list-stored-playlists
-   (lambda (stored-playlists)
-     (libmpdel-playlist-add
-      entity
-      (libmpdel-completing-read
-       (format "Add %S to playlist: " (libmpdel-entity-name entity))
-       stored-playlists)))))
-
-(defun ivy-mpdel--playlist-add-entity (entity)
-  "Add ENTITY to current playlist."
-  (libmpdel-playlist-add entity (libmpdel-current-playlist)))
-
 
 ;;; Ivy interface
 
@@ -73,7 +61,8 @@
 (defun ivy-mpdel-artists ()
   "Select music from a list of artists."
   (interactive)
-  (libmpdel-list-artists
+  (libmpdel-list
+   'artists
    (lambda (artists)
      (ivy-read "Artist: "
                (ivy-mpdel--wrap-all artists)
@@ -99,7 +88,8 @@
 (defun ivy-mpdel-stored-playlists ()
   "Select music from a stored playlist or edit one."
   (interactive)
-  (libmpdel-list-stored-playlists
+  (libmpdel-list
+   'stored-playlists
    (lambda (stored-playlists)
      (ivy-read "Playlist: "
                (ivy-mpdel--wrap-all stored-playlists)
@@ -114,15 +104,16 @@
   "Select a song from a list of SONGS."
   (ivy-read "Song: "
             (ivy-mpdel--wrap-all songs)
-            :action (ivy-mpdel--apply-unwrapped #'ivy-mpdel--playlist-add-entity)
+            :action (ivy-mpdel--apply-unwrapped #'mpdel-song-open)
             :caller 'ivy-mpdel-songs))
 (mapc
  (lambda (ivy-caller)
    (ivy-add-actions
     ivy-caller
-    `(("a" ,(ivy-mpdel--apply-unwrapped #'ivy-mpdel--playlist-add-entity) "Add to current playlist")
-      ("r" ,(ivy-mpdel--apply-unwrapped #'libmpdel-playlist-replace) "Replace current playlist")
-      ("P" ,(ivy-mpdel--apply-unwrapped #'ivy-mpdel--stored-playlist-add-entity) "Add to stored playlist"))))
+    `(("a" ,(ivy-mpdel--apply-unwrapped #'libmpdel-current-playlist-add) "Add to current playlist")
+      ("A" ,(ivy-mpdel--apply-unwrapped #'libmpdel-stored-playlist-add) "Add to a stored playlist")
+      ("r" ,(ivy-mpdel--apply-unwrapped #'libmpdel-current-playlist-replace) "Replace current playlist")
+      ("R" ,(ivy-mpdel--apply-unwrapped #'libmpdel-current-playlist-replace) "Replace stored playlist"))))
  '(ivy-mpdel-artists ivy-mpdel-albums ivy-mpdel-stored-playlists ivy-mpdel-songs))
 
 (ivy-add-actions
@@ -134,6 +125,9 @@
 (ivy-add-actions
  'ivy-mpdel-albums
  `(("p" (lambda (_) (ivy-mpdel-artists)) "See all artists")))
+
+(define-key mpdel-core-map (kbd "i") #'ivy-mpdel-artists)
+(define-key mpdel-core-map (kbd "I") #'ivy-mpdel-stored-playlists)
 
 (provide 'ivy-mpdel)
 ;;; ivy-mpdel.el ends here
