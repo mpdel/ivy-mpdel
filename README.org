@@ -1,0 +1,66 @@
+* ivy-mpdel
+
+** Summary
+
+The package ivy-mpdel provides an [[https://melpa.org/#/ivy][ivy/counsel]] interface to navigate
+your [[https://www.musicpd.org/][Music Player Daemon]] database (MPD), a flexible, powerful,
+server-side application for playing music. ivy-mpdel works in
+cooperation with [[https://gitlab.petton.fr/mpdel/mpdel][mpdel]], an Emacs client for MPD.
+
+** Installing
+
+Start by installing [[https://gitlab.petton.fr/mpdel/mpdel][mpdel]] and [[https://melpa.org/#/ivy][ivy]] (you don't need to use ivy as Emacs'
+completion system, just have it installed). Then, clone this git
+repository. I will ask to get MPDel inside [[http://melpa.org/][melpa]] to facilitate
+installing it.
+
+** Using
+
+Start by adding these lines to your ~init.el~ file:
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path "~/.emacs.d/lib/ivy-mpdel")
+  (require 'ivy-mpdel)
+#+END_SRC
+
+Then, press ~mpdel-prefix-key~ (~C-x Z~ by default) followed by ~i~ to
+get a list of all artists in the MPD database. You can get the same
+list by typing ~i~ inside any MPDel buffer (such as a playlist).
+
+You can add all songs from any artist by selecting the artist and
+pressing ~M-o a~. You can also browse to the artist's albums by typing
+~RET~ (i.e., ~enter~). Add a complete album to the current playlist by
+typing ~M-o a~ or go to the album's songs by typing ~RET~. Typing ~M-o
+a~ on a song will add it to the current playlist while ~RET~ shows
+information about the song.
+
+Here is a list of keybindings to start ivy-mpdel:
+
+| *Binding*        | *Action*                       |
+|------------------+--------------------------------|
+| ~C-x Z i~        | get a list of artists          |
+| ~i~ within MPDel | get a list of artists          |
+| ~C-x Z I~        | get a list of stored playlists |
+| ~I~ within MPDel | get a list of stored playlists |
+
+Here is a list of keybindings available within ivy-mpdel:
+
+| *Binding* | *Action*                           |
+|-----------+------------------------------------|
+| ~M-o a~   | add item to current playlist       |
+| ~M-o r~   | replace current playlist with item |
+| ~M-o A~   | add item to stored playlist        |
+| ~M-o R~   | replace stored playlist with item  |
+| ~RET~     | dive into selected item            |
+
+** License
+
+See [[file:COPYING][COPYING]]. Copyright (c) 2018 Damien Cassou.
+
+  #+BEGIN_HTML
+  <a href="https://liberapay.com/DamienCassou/donate">
+    <img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg">
+  </a>
+  #+END_HTML
+
+#  LocalWords:  MPDel MPD minibuffer
