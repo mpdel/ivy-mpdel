@@ -1,5 +1,26 @@
 * ivy-mpdel
 
+  #+BEGIN_HTML
+      <p>
+        <a href="https://stable.melpa.org/#/ivy-mpdel">
+          <img alt="MELPA Stable" src="https://stable.melpa.org/packages/ivy-mpdel-badge.svg"/>
+        </a>
+
+        <a href="https://melpa.org/#/ivy-mpdel">
+          <img alt="MELPA Stable" src="https://melpa.org/packages/ivy-mpdel-badge.svg"/>
+        </a>
+
+        <a href="https://gitlab.petton.fr/mpdel/ivy-mpdel/commits/master">
+          <img alt="pipeline status" src="https://gitlab.petton.fr/mpdel/ivy-mpdel/badges/master/pipeline.svg" />
+        </a>
+
+        <a href="https://liberapay.com/DamienCassou/donate">
+          <img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg">
+        </a>
+      </p>
+  #+END_HTML
+
+
 ** Summary
 
 The package ivy-mpdel provides an [[https://melpa.org/#/ivy][ivy/counsel]] interface to navigate
