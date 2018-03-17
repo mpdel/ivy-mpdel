@@ -121,13 +121,13 @@
 
 (ivy-add-actions
  'ivy-mpdel-songs
- `(("p" ,(ivy-mpdel--apply-unwrapped
+ `(("^" ,(ivy-mpdel--apply-unwrapped
           (lambda (song)
             (ivy-mpdel-albums (libmpdel-artist song)))) "See all albums of artist")))
 
 (ivy-add-actions
  'ivy-mpdel-albums
- `(("p" (lambda (_) (ivy-mpdel-artists)) "See all artists")))
+ `(("^" (lambda (_) (ivy-mpdel-artists)) "See all artists")))
 
 (define-key mpdel-core-map (kbd "i") #'ivy-mpdel-artists)
 (define-key mpdel-core-map (kbd "I") #'ivy-mpdel-stored-playlists)
