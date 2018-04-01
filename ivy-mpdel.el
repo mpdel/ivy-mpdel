@@ -5,7 +5,7 @@
 ;; Author: Damien Cassou <damien@cassou.me>
 ;; Keywords: multimedia
 ;; Url: https://github.com/DamienCassou/mpdel
-;; Package-requires: ((emacs "25.1") (ivy "0.10.0") (libmpdel "0.3.0") (mpdel "0.3.0"))
+;; Package-requires: ((emacs "25.1") (ivy "0.10.0") (libmpdel "0.5.0") (mpdel "0.4.0"))
 ;; Keywords: multimedia
 ;; Version: 0.3.0
 
