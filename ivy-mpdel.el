@@ -109,6 +109,7 @@ If ENTITY is nil, select from all artists."
    ("A" ,(ivy-mpdel--apply-unwrapped #'libmpdel-stored-playlist-add) "Add to a stored playlist")
    ("r" ,(ivy-mpdel--apply-unwrapped #'libmpdel-current-playlist-replace) "Replace current playlist")
    ("R" ,(ivy-mpdel--apply-unwrapped #'libmpdel-current-playlist-replace) "Replace stored playlist")
+   ("p" ,(ivy-mpdel--apply-unwrapped #'libmpdel-current-playlist-insert) "Insert after currently-played song")
    ("^" ,(ivy-mpdel--apply-unwrapped #'ivy-mpdel--list-parent) "List parent entity")))
 
 (define-key mpdel-core-map (kbd "i") #'ivy-mpdel-artists)

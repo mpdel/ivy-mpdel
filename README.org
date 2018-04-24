@@ -68,6 +68,8 @@ Here is a list of keybindings available within ivy-mpdel:
 | ~M-o r~   | replace current playlist with item |
 | ~M-o A~   | add item to stored playlist        |
 | ~M-o R~   | replace stored playlist with item  |
+| ~M-o p~   | start playing item immediately     |
+| ~M-o ^~   | restart ivy on parent item         |
 | ~RET~     | dive into selected item            |
 
 ** License
